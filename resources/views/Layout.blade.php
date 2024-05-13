@@ -153,10 +153,9 @@
             </li><!-- End Components Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="{{ route('employee.index') }}">
+                <a class="nav-link collapsed" href="{{ route('employee.index') }}">
                     <i class="bi bi-person-square"></i><span>Employee</span>
                 </a>
-
             </li><!-- End Components Nav -->
 
         </ul>
@@ -169,5 +168,15 @@
         @yield('main')
 
     </main><!-- End #main -->
+
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('assets/js/main.js') }}"></script>
+
 </body>
 </html>

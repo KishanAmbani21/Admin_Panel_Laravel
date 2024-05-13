@@ -52,73 +52,28 @@
             color: white;
             text-align: center;
         }
+        .msgpopup {
+        position: fixed;
+        top: 0;
+        left: 80%;
+        transform: translateX(-30%);
+        z-index: 9999;
+        width: 20%;
+        max-width: 400px; / Set maximum width /
+        animation: slideInOut2 0.6s forwards, disappear 5s forwards; / Combined animation /
+    }
+    
+    @keyframes slideInOut2 {
+        0% {
+            top: -100%;
+        }
+        100% {
+            top: 10%;
+        }
+    }
     </style>
 
-    <style>
-.modal {
-  display: none;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  /* padding: 0; */
-  border: 1px solid #888;
-  width: 30%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.modal-header {
-  padding: 2px 16px;
-  background-color: #4154f1;
-  color: white;
-}
-
-.modal-body {padding: 2px 16px;}
-
-    </style>
 </head>
 
 <body>
@@ -224,6 +179,8 @@
 
     </header><!-- End Header -->
 
+
+
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -257,19 +214,16 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Data Tables</h1>
+            <h1>Employee Tables</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Tables</li>
-                    <li class="breadcrumb-item active">Data</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Employee</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
-
-
 
             <div class="row">
 
@@ -279,21 +233,9 @@
                     <div class="card">
                         <div class="card-body">
 
-                            {{-- <div style="margin-top: 30px; margin-left: 4px;"><a class="btn btn-primary"  id="myBtn" href="{{ route('employee.create') }}">Add Employee</a></div> --}}
+                            <div style="margin-top: 30px; margin-left: 4px;"><a class="btn btn-primary"   href="{{ route('employee.create') }}">Add Employee</a></div>
 
-                            <button id="myBtn">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <i class="bi bi-check-circle me-1"></i>
-    A simple success alert with icon—check it out!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-
-</div>
+                            
                               
                             <center>
                                 <h5 class="card-title">Employee Data Table</h5>
@@ -398,33 +340,7 @@
 
     </script>
 
-<script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-    
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-    
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-    
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-    
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-    </script>
+
 
 </body>
 

@@ -62,7 +62,7 @@
 
                   <div class="col-12" style="margin-bottom: 20px;">
                     <label for="email_id" class="form-label">Email</label>
-                    <input type="text" name="email" class="form-control" id="email_id" value="{{ old('email') }}">
+                    <input type="text" name="email" class="form-control" id="email_id" value="{{ old('email') }}" >
                     <span class="text-danger">@error('email') {{ $message }} @enderror</span>
 
                   </div>

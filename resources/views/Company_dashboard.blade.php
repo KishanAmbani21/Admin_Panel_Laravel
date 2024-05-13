@@ -30,6 +30,9 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ 
+
     <style>
         #companys {
             border-collapse: collapse;
@@ -50,6 +53,35 @@
             color: white;
             text-align: center;
         }
+        .msgpopup {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-30%);
+        z-index: 9999;
+        width: 20%;
+        max-width: 400px;
+        animation: slideInOut2 0.6s forwards, disappear 5s forwards; 
+    }
+    
+    @keyframes slideInOut2 {
+        0% {
+            top: -100%;
+        }
+        100% {
+            top: 10%;
+        }
+    }
+
+    @keyframes disappear {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
     </style>
 </head>
 
@@ -155,7 +187,22 @@
         </nav><!-- End Icons Navigation -->
 
     </header><!-- End Header -->
-
+    @if(Session::has('success'))
+    {{-- <span class="msgpopup"><p>{{ session('success') }}</p></span> --}}
+    <div class="msgpopup">
+        <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show text-center">
+            {{ Session('success') }}
+        </div>
+    </div>
+    @endif
+    @if(Session::has('delete'))
+    {{-- <span class="msgpopup"><p>{{ session('success') }}</p></span> --}}
+    <div class="msgpopup">
+        <div class="alert alert-success bg-danger text-light border-0 alert-dismissible fade show text-center">
+            {{ Session('delete') }}
+        </div>
+    </div>
+    @endif
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -176,7 +223,7 @@
             </li><!-- End Components Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="{{ route('employee.index') }}">
+                <a class="nav-link collapsed" href="{{ route('employee.index') }}">
                     <i class="bi bi-person-square"></i><span>Employee</span>
                 </a>
 
@@ -191,12 +238,11 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Data Tables</h1>
+            <h1>Company Tables</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Tables</li>
-                    <li class="breadcrumb-item active">Data</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Company</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -208,6 +254,14 @@
                 <div class="col-lg-15">
     
                     <div class="card">
+
+                        <form class="form-inline">
+                            <input class="form-control mr-2" type="search" name="search">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                          </form>
+
+                          
+
                         <div class="card-body">
     
                             <div style="margin-top: 30px; margin-left: 4px;"><a class="btn btn-primary" href="{{ route('company.create') }}">Add Company</a></div>
@@ -230,7 +284,7 @@
                                             <th scope="col">Website Link</th>
                                             <th scope="col">Status</th>
                                             
-                                            <th>Get</th>
+                                            <th>Add Employee</th>
                                             <th>Action1</th>
                                             <th>Action2</th>
                                             <th>Action3</th>
@@ -241,7 +295,7 @@
                                     <tbody>
     
     
-                                        @foreach ($company as $company)
+                                        @foreach ($companies as $company)
                                         <tr>
                                             <td>{{ $company->id }}</td>
                                             <td>{{ $company->name }}</td>
@@ -261,7 +315,7 @@
     
                                             <td>
                                                 <a class="btn btn-secondary"
-                                                    href="{{ route('employee.create', ['id'=>$company->id]) }}">Employee</a>
+                                                    href="{{ route('employee.create', ['id'=>$company->id]) }}">Get</a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-warning"
@@ -276,12 +330,16 @@
                                                     @csrf
                                                     @method('delete')
                                                 </form>
-                                                <button class="btn btn-danger" onclick="if(confirm('Are you sure, want to delete employee ?')){event.preventDefault();document.getElementById('deleteform').submit()}">Trace</button>
+                                                <button class="btn btn-danger" onclick="if(confirm('Are you sure you want to trace? ')){event.preventDefault();document.getElementById('deleteform').submit()}">Trace</button>
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
+
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                {!! $companies->links() !!}
                             </div>
                             <!-- End Table with hoverable rows -->
     
@@ -316,7 +374,6 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-
 
 
 </body>

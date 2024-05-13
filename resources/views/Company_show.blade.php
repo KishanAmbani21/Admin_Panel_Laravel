@@ -2,16 +2,16 @@
 
 @section('main')
 
-    <div class="pagetitle">
-      <h1>Profile</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Profile</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+<div class="pagetitle">
+  <h1>Profile</h1>
+  <nav>
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('company.index') }}">Company</a></li>
+          <li class="breadcrumb-item active">Show</li>
+      </ol>
+  </nav>
+</div><!-- End Page Title -->
 
     <section class="section profile">
       <div class="row">
