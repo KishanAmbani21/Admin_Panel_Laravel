@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id();
             
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
-            $table->string('first_name')->unique();
-            $table->string('last_name')->unique();
-            
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->softDeletes();
-            // $table->timestamp('deleted_at')->nullable()->default(NULL);
             $table->timestamps();
         });
     }

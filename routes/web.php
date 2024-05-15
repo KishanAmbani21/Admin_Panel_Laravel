@@ -26,15 +26,17 @@ Route::get('/', function () {
 
 Route::post('/login', [loginController::class, 'login'])->name('login');
 
-Route::get('/logout', [loginController::class, 'logout'])->name('logout');
+// Middleware group for routes that require session data
+Route::middleware('sessionafter')->group(function () {
 
-Route::get('/dashboard', [loginController::class, 'login_form']);
+    Route::get('/dashboard', [loginController::class, 'loginform'])->name('dashboard');
 
-//Company Resource
-Route::resource('company', CompanyController::class);
+    Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
-Route::resource('employee', EmployeeController::class);
+    Route::resource('company', CompanyController::class);
+    Route::resource('employee', EmployeeController::class);
 
- Route::get('/trace_data', [CompanyController::class, 'trace_data'])->name('trace_data');
- Route::patch('/restore/{id}', [CompanyController::class, 'restore'])->name('restore');
- Route::delete('/delete/{id}', [CompanyController::class, 'delete'])->name('delete');
+    Route::get('/trace_data', [CompanyController::class, 'traceData'])->name('trace_data');
+    Route::patch('/restore/{id}', [CompanyController::class, 'restore'])->name('restore');
+    Route::delete('/delete/{id}', [CompanyController::class, 'delete'])->name('delete');
+});

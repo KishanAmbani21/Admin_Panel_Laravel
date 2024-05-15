@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+    xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
     <meta charset="utf-8">
@@ -144,20 +145,25 @@
 <body width="100%" bgcolor="#F1F1F1" style="margin: 0; mso-line-height-rule: exactly;">
     <center style="width: 100%; background: #F1F1F1; text-align: left;">
         <div style="max-width: 680px; margin: auto;" class="email-container">
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px;" class="email-container">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+                style="max-width: 680px;" class="email-container">
                 <tr>
                     <td bgcolor="#333333">
+
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
-                                <td style="padding: 30px 40px 30px 40px; text-align: center;"> <span style="color:#fff; font-size: 30px" class="d-none d-lg-block" > <img src="{{ $maildata['body'] }}" width="20px">Kishan Ambani</span> </td>
+                                <td style="padding: 30px 40px 30px 40px; text-align: center;"> <span style="color:#fff; font-size: 30px" class="d-none d-lg-block"> <img src="{{ $maildata['body'] }}" width="20px">Kishan Ambani</span>
+                                </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td bgcolor="#ffffff" align="center" valign="top" style="text-align: center; background-position: center center !important; background-size: cover !important;">
+                    <td bgcolor="#ffffff" align="center" valign="top"
+                        style="text-align: center; background-position: center center !important; background-size: cover !important;">
                         <div>
-                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width:500px; margin: auto;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center"
+                                width="100%" style="max-width:500px; margin: auto;">
                                 <tr>
                                     <td height="20" style="font-size:20px; line-height:20px;">&nbsp;</td>
                                 </tr>
@@ -166,12 +172,17 @@
                                         <table>
                                             <tr>
                                                 <td valign="top" style="text-align: center; padding-top: 10px ">
-                                                    <h1 style="margin: 0; padding-bottom: 20px; font-family: 'Montserrat', sans-serif; font-size: 30px; line-height: 36px; color: #000000; font-weight: bold;"> &#129395; WELCOME  &#129395; <br> {{ $maildata['title'] }}</h1>
+                                                    <h1
+                                                        style="margin: 0; padding-bottom: 20px; font-family: 'Montserrat', sans-serif; font-size: 30px; line-height: 36px; color: #000000; font-weight: bold;">
+                                                        &#129395; WELCOME &#129395; <br> {{ $maildata['title'] }}</h1>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td valign="top" style="text-align: center; padding: 10px 20px 15px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #000000;">
-                                                    <p style="margin: 0;"><b style="font-size: 20px;"> &#129395; Congratulations!</b> <br> Your company has been successfully added to our system. We look forward to working with you.</p>
+                                                <td valign="top"
+                                                    style="text-align: center; padding: 10px 20px 15px 20px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #000000;">
+                                                    <p style="margin: 0;"><b style="font-size: 20px;"> &#129395;
+                                                            Congratulations!</b> <br> Your company has been successfully
+                                                        added to our system. We look forward to working with you.</p>
                                                 </td>
                                             </tr>
 
@@ -185,23 +196,28 @@
                         </div>
                     </td>
                 </tr>
-                
-                
+
+
                 <tr>
                     <td bgcolor="#333333">
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"> <br>
                             <tr>
-                                <td align="center"><img src="{{ $maildata['body'] }}" width="37" height="37" style="display: block; border: 0px; padding-bottom: 10px;"></td>
+                                <td align="center"><img src="{{ $maildata['body'] }}" width="37" height="37"
+                                        style="display: block; border: 0px; padding-bottom: 10px;"></td>
                             </tr>
-                            
+
                             <tr>
-                                <td style="padding: 0px 40px 0px 40px; font-family: sans-serif; font-size: 15px; line-height: 18px; color: #ffffff; text-align: center; font-weight:normal;">
-                                    <p style="margin: 0;">This email was sent to you from contact <br> <b>ambanikishan21@gmail.com</b></p>
+                                <td
+                                    style="padding: 0px 40px 0px 40px; font-family: sans-serif; font-size: 15px; line-height: 18px; color: #ffffff; text-align: center; font-weight:normal;">
+                                    <p style="margin: 0;">This email was sent to you from contact <br>
+                                        <b>ambanikishan21@gmail.com</b></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding: 0px 40px 40px 40px; font-family: sans-serif; font-size: 12px; line-height: 18px; color: #ffffff; text-align: center; font-weight:normal;">
-                                    <p style="margin: 0; padding-top: 10px;">&copy; Copyright <strong><span>Kishan Ambani</span></strong>. All Rights Reserved</p>
+                                <td
+                                    style="padding: 0px 40px 40px 40px; font-family: sans-serif; font-size: 12px; line-height: 18px; color: #ffffff; text-align: center; font-weight:normal;">
+                                    <p style="margin: 0; padding-top: 10px;">&copy; Copyright <strong><span>Kishan
+                                                Ambani</span></strong>. All Rights Reserved</p>
                                 </td>
                             </tr>
                         </table>
