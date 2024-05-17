@@ -8,9 +8,8 @@
         <div class="col-lg-15">
             <div class="card">
                 <div class="card-body">
-                    <center>
-                        <h5 class="card-title">Company Trace_Data Table</h5>
-                    </center>
+  
+                        <h5 class="card-title" style="text-align:center;">Company Trace_Data Table</h5>
 
                     <div class="table-responsive">
                         <table class="table table-hover" id="companys">
@@ -34,7 +33,7 @@
                                     <td>{{ $company->id }}</td>
                                     <td>{{ $company->name }}</td>
                                     <td>{{ $company->email }}</td>
-                                    <td><img class="card-img-top" src="{{ $company->logo }}" style="width:100px; height:100px;"></td>
+                                    <td><img class="card-img-top" src="{{ $company->logo }}" style="width:100px; height:100px;" alt=""></td>
                                     <td>{{ $company->link }}</td>
                                     <td>
                                         @if(!($company->deleted_at == NULL || $company->status == 1))

@@ -96,7 +96,7 @@
             </a>
         </div>
 
-        <nav class="header-nav ms-auto">
+        <nav class="header-nav ms-auto" aria-label="breadcrumb">
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url('/dashboard') }}"
@@ -179,7 +179,7 @@
 
         <div class="pagetitle">
             <h1>Employee Tables</h1>
-            <nav>
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item active">Employee</li>
@@ -193,9 +193,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div style="margin-top: 30px; margin-left: 4px;"><a class="btn btn-primary" href="{{ route('employee.create') }}">Add Employee</a></div>
-                            <center>
-                                <h5 class="card-title">Employee Data Table</h5>
-                            </center>
+                            
+                                <h5 class="card-title" style="text-align:center;">Employee Data Table</h5>
 
                             <table class="employee-table table table-hover" id="companys">
                                 <thead>

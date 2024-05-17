@@ -78,10 +78,7 @@
     @if ($employee)
     <div class="card">
       <div class="card-body">
-
-        <center>
-          <h5 class="card-title">Employee List</h5>
-        </center>
+        <h5 class="card-title" style="text-align:center;">Employee List</h5>
 
         <!-- Table with hoverable rows -->
         <table class="table table-hover" id="companys">

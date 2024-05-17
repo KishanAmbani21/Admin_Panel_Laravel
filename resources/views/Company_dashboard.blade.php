@@ -81,6 +81,7 @@
             }
         }
     </style>
+
 </head>
 
 <body>
@@ -95,7 +96,7 @@
             </a>
         </div>
 
-        <nav class="header-nav ms-auto">
+        <nav class="header-nav ms-auto" aria-label="breadcrumb">
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url('/dashboard') }}"
@@ -166,7 +167,7 @@
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Company Tables</h1>
-            <nav>
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item active">Company</li>
@@ -196,9 +197,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <center>
-                                <h5 class="card-title">Company Data Table</h5>
-                            </center>
+
+                                <h5 class="card-title" style="text-align:center;">Company Data Table</h5>
                             
                             <div class="table-responsive">
                                 
@@ -222,7 +222,7 @@
                                         <tr>
                                             <td>{{ $company->id }}</td>
                                             <td>{{ $company->name }}</td>
-                                            <td><img class="card-img-top" src="{{ $company->logo }}" style="width:100px; height:100px;"></td>
+                                            <td><img class="card-img-top" src="{{ $company->logo }}" style="width:100px; height:100px;" alt=""></td>
                                             <td>{{ $company->email }}</td>
                                             <td>{{ $company->link }}</td>
                                             <td>

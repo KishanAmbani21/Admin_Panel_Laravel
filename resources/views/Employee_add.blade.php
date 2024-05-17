@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee Add</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -61,8 +62,7 @@
 
                                 @if(isset($company->id))
                                 <div class="form-group">
-                                    <label>Company</label>
-
+                                    <label for="company">Company</label>
                                     @if (request('id'))
                                     <select name="company" class="form-select" id="company">
                                         <option value="{{ $company->id }}">{{ $company->name }}</option>
@@ -73,7 +73,7 @@
                                 @else
 
                                 <div class="form-group">
-                                    <label>Company</label>
+                                    <label for="company">Company</label>
                                     <select name="company" class="form-select" id="company">
                                         <option selected>Company default</option>
                                         @foreach($company as $company)
