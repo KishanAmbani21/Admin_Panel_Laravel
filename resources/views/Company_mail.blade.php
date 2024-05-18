@@ -152,7 +152,9 @@
 
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
-                                <td style="padding: 30px 40px 30px 40px; text-align: center;"> <span style="color:#fff; font-size: 30px" class="d-none d-lg-block"> <img src="{{ $maildata['body'] }}" width="20px">Kishan Ambani</span>
+                                <td style="padding: 30px 40px 30px 40px; text-align: center;"> <span
+                                        style="color:#fff; font-size: 30px" class="d-none d-lg-block"> <img
+                                            src="{{ $maildata['body'] }}" width="20px">Kishan Ambani</span>
                                 </td>
                             </tr>
                         </table>
@@ -210,7 +212,8 @@
                                 <td
                                     style="padding: 0px 40px 0px 40px; font-family: sans-serif; font-size: 15px; line-height: 18px; color: #ffffff; text-align: center; font-weight:normal;">
                                     <p style="margin: 0;">This email was sent to you from contact <br>
-                                        <b>ambanikishan21@gmail.com</b></p>
+                                        <b>ambanikishan21@gmail.com</b>
+                                    </p>
                                 </td>
                             </tr>
                             <tr>

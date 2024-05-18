@@ -22,8 +22,9 @@
 
     <!-- CSS CDN -->
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -81,7 +82,6 @@
             }
         }
     </style>
-
 </head>
 
 <body>
@@ -198,10 +198,11 @@
                                 </div>
                             </div>
 
-                                <h5 class="card-title" style="text-align:center;">Company Data Table</h5>
-                            
+                            <h5 class="card-title" style="text-align: center;">Company Data Table</h5>
+
+
                             <div class="table-responsive">
-                                
+
                                 <table class="table table-hover" id="companys">
                                     <thead>
                                         <tr>
@@ -222,9 +223,11 @@
                                         <tr>
                                             <td>{{ $company->id }}</td>
                                             <td>{{ $company->name }}</td>
-                                            <td><img class="card-img-top" src="{{ $company->logo }}" style="width:100px; height:100px;" alt=""></td>
+                                            <td><img class="card-img-top" src="{{ $company->logo }}"
+                                                    style="width:100px; height:100px;" alt="as"></td>
                                             <td>{{ $company->email }}</td>
-                                            <td>{{ $company->link }}</td>
+                                            <td> <a href="{{ $company->link }}" target="_blank">{{ $company->link }}</a>
+                                            </td>
                                             <td>
                                                 @if($company->deleted_at == NULL || $company->status == 1)
                                                 <span class="badge bg-success">Active</span>
@@ -278,7 +281,8 @@
         </div>
     </footer>
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

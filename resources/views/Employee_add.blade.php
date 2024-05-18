@@ -28,7 +28,8 @@
 
                             <h5 class="card-title text-center">Add Employee Details Form</h5>
 
-                            <form action="{{ route('employee.store') }}" enctype="multipart/form-data" method="post" class="row g-3" id="myForm">
+                            <form action="{{ route('employee.store') }}" enctype="multipart/form-data" method="post"
+                                class="row g-3" id="myForm">
                                 @csrf
                                 @method('post')
 
@@ -133,12 +134,15 @@
                 }
 
                 if (email === "") {
-                    emailError.textContent = "Email is required";
-                    event.preventDefault();
-                } else if (!isValidEmail(email)) {
+                emailError.textContent = "Company Email is required";
+                isValid = false;
+            } else {
+                var emailRegex = /^[a-z]+[a-z0-9]+@(gmail|mail|outlook|hotmail)\.(com|in|org)$/;
+                if (!emailRegex.test(email)) {
                     emailError.textContent = "Please enter a valid email address";
-                    event.preventDefault();
+                    isValid = false;
                 }
+            }
     
                 if (phone === "") {
                     phoneError.textContent = "Phone Number is required";
@@ -146,11 +150,6 @@
                 }else if (!isValidPhoneNumber(phone)) {
                     phoneError.textContent = "Please enter a valid 10-digit phone number";
                     event.preventDefault();
-                }
-
-                function isValidEmail(email) {
-                    var emailRegex = /\S+@\S+\.\S+/;
-                    return emailRegex.test(email);
                 }
 
                 function isValidPhoneNumber(phone) {

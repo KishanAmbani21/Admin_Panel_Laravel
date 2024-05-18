@@ -23,10 +23,10 @@ class EmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'string','min:3'],
-            'last_name' => ['required', 'string','min:3'],
+            'first_name' => ['required', 'string', 'min:3'],
+            'last_name' => ['required', 'string', 'min:3'],
             'email' => ['required', 'string', 'email'],
-            'phone' => ['required','size:10']
+            'phone' => ['required', 'size:10']
         ];
     }
 }

@@ -23,7 +23,7 @@ class CompanyController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        
+
         $query = Company::query();
 
         if ($search) {
@@ -54,45 +54,46 @@ class CompanyController extends Controller
     public function store(CompanyRequest $request)
     {
         try {
-        $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email'],
-            'logo' => ['required', 'mimes:jpeg,png,jpg,pdf,docx,doc,txt', 'dimensions:min_width=100,min_height=100']
-        ]);
-
-        $company = new Company();
-        $company->name = $request->name;
-        $company->email = $request->email;
-        $company->link = $request->link;
-
-        if ($request->hasFile('logo')) {
-            $image = $request->file('logo');
-            $filename = Str::random(20) . '.' . $image->getClientOriginalExtension();
-            $imagePath = $request->file('logo')->storeAs('public', $filename);
-            $imageUrl = Storage::url($imagePath);
-            $company->logo = $imageUrl;
-        }
-
-        $company->save();
-
-        $mailData = [
-            'title' => $request->name,
-            'body' => $company->logo,
-        ];
-        Mail::to($request->email)->send(new CompanyMail($mailData));
-
-        return redirect()->route('company.index')->with('success', 'Company added successfully');
-    } catch (QueryException $e) {
-
-        $errorCode = $e->errorInfo[1];
-        if ($errorCode == 1062) {
-            return redirect()->back()->withInput()->withErrors([
-                'email' => 'Company already exists',
+            $request->validate([
+                'name' => ['required', 'string'],
+                'email' => ['required', 'email'],
+                'logo' => ['required', 'mimes:jpeg,png,jpg', 'dimensions:min_width=100,min_height=100'],
+                'link' => ['url'],
             ]);
-        }
 
-        return redirect()->back()->withInput()->withErrors(['unexpected_error' => 'An unexpected error occurred.']);
-    }
+            $company = new Company();
+            $company->name = $request->name;
+            $company->email = $request->email;
+            $company->link = $request->link;
+
+            if ($request->hasFile('logo')) {
+                $image = $request->file('logo');
+                $filename = Str::random(20) . '.' . $image->getClientOriginalExtension();
+                $imagePath = $request->file('logo')->storeAs('public', $filename);
+                $imageUrl = Storage::url($imagePath);
+                $company->logo = $imageUrl;
+            }
+
+            $company->save();
+
+            $mailData = [
+                'title' => $request->name,
+                'body' => $company->logo,
+            ];
+            Mail::to($request->email)->send(new CompanyMail($mailData));
+
+            return redirect()->route('company.index')->with('success', 'Company added successfully');
+        } catch (QueryException $e) {
+
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1062) {
+                return redirect()->back()->withInput()->withErrors([
+                    'email' => 'Company already exists',
+                ]);
+            }
+
+            return redirect()->back()->withInput()->withErrors(['unexpected_error' => 'An unexpected error occurred.']);
+        }
     }
 
     /**
@@ -104,7 +105,7 @@ class CompanyController extends Controller
     public function show($id)
     {
         $company = Company::findOrFail($id);
-        
+
         $employee = Employee::where('company_id', $id)->get();
 
         return view('Company_show', compact('company', 'employee'));
@@ -132,20 +133,32 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, $id)
     {
-        $validate = $request->validated();
-        $company = Company::findOrFail($id);
+        try {
+            $validate = $request->validated();
+            $company = Company::findOrFail($id);
 
-        if ($request->hasFile('logo')) {
-            $image = $request->file('logo');
-            $filename = Str::random(20) . '.' . $image->getClientOriginalExtension();
-            $imagePath = $request->file('logo')->storeAs('public', $filename);
-            $imageUrl = Storage::url($imagePath);
-            $company->logo = $imageUrl;
+            if ($request->hasFile('logo')) {
+                $image = $request->file('logo');
+                $filename = Str::random(20) . '.' . $image->getClientOriginalExtension();
+                $imagePath = $request->file('logo')->storeAs('public', $filename);
+                $imageUrl = Storage::url($imagePath);
+                $company->logo = $imageUrl;
+            }
+
+            $company->update($validate);
+
+            return redirect()->route('company.index')->with('success', 'Company updated successfully');
+        } catch (QueryException $e) {
+
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == 1062) {
+                return redirect()->back()->withInput()->withErrors([
+                    'email' => 'Company already exists',
+                ]);
+            }
+
+            return redirect()->back()->withInput()->withErrors(['unexpected_error' => 'An unexpected error occurred.']);
         }
-
-        $company->update($validate);
-
-        return redirect()->route('company.index')->with('success', 'Company updated successfully');
     }
 
     /**
@@ -205,7 +218,7 @@ class CompanyController extends Controller
         }
     }
 
-     /**
+    /**
      * Display a listing of the trashed companies.
      *
      * @return \Illuminate\View\View
@@ -213,7 +226,7 @@ class CompanyController extends Controller
     public function traceData()
     {
         $company = Company::onlyTrashed()->get();
-        
+
         return view('Company_trace', compact('company'));
     }
 }

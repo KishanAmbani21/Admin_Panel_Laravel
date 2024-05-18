@@ -29,7 +29,8 @@
                             </div>
                             @endif
 
-                            <form action="{{ route('employee.update', $employee->id) }}" enctype="multipart/form-data" method="post" class="row g-3" onsubmit="return validateForm()">
+                            <form action="{{ route('employee.update', $employee->id) }}" enctype="multipart/form-data"
+                                method="post" class="row g-3" id="myForm">
                                 @csrf
                                 @method('put')
 
@@ -71,54 +72,72 @@
     </main>
 
     <script>
-        function validateForm() {
-            var firstName = document.getElementById("firstname").value;
-            var lastName = document.getElementById("lastname").value;
-            var email = document.getElementById("email").value;
-            var phone = document.getElementById("phone").value;
-
-            var firstNameError = document.getElementById("firstnameError");
-            var lastNameError = document.getElementById("lastnameError");
-            var emailError = document.getElementById("emailError");
-            var phoneError = document.getElementById("phoneError");
-
-            firstNameError.textContent = "";
-            lastNameError.textContent = "";
-            emailError.textContent = "";
-            phoneError.textContent = "";
-
-            var isValid = true;
-
-            if (firstName.trim() === "") {
-                firstNameError.textContent = "Please enter First Name";
-                isValid = false;
+        document.addEventListener("DOMContentLoaded", function() {
+            var form = document.getElementById("myForm");
+    
+            form.addEventListener("submit", function(event) {
+                var firstname = document.getElementById("firstname").value;
+                var lastname = document.getElementById("lastname").value;
+                var email = document.getElementById("email").value;
+                var phone = document.getElementById("phone").value;
+    
+                var firstnameError = document.getElementById("firstnameError");
+                var lastnameError = document.getElementById("lastnameError");
+                var emailError = document.getElementById("emailError");
+                var phoneError = document.getElementById("phoneError");
+    
+                firstnameError.textContent = "";
+                lastnameError.textContent = "";
+                emailError.textContent = "";
+                phoneError.textContent = "";
+    
+                var isValid = true;
+    
+                if (firstname === "") {
+                    firstnameError.textContent = "Employee FirstName is required";
+                    isValid = false;
+                } else if (firstname.length < 3) {
+                    firstnameError.textContent = "Employee FirstName must be at least 3 characters long";
+                    isValid = false;
+                }
+    
+                if (lastname === "") {
+                    lastnameError.textContent = "Employee LastName is required";
+                    isValid = false;
+                } else if (lastname.length < 3) {
+                    lastnameError.textContent = "Employee LastName must be at least 3 characters long";
+                    isValid = false;
+                }
+    
+                if (email === "") {
+                    emailError.textContent = "Company Email is required";
+                    isValid = false;
+                } else {
+                    var emailRegex = /^[a-z]+[a-z0-9]+@(gmail|mail|outlook|hotmail)\.(com|in|org)$/;
+                    if (!emailRegex.test(email)) {
+                        emailError.textContent = "Please enter a valid email address";
+                        isValid = false;
+                    }
+                }
+    
+                if (phone === "") {
+                    phoneError.textContent = "Phone Number is required";
+                    isValid = false;
+                } else if (!isValidPhoneNumber(phone)) {
+                    phoneError.textContent = "Please enter a valid 10-digit phone number";
+                    isValid = false;
+                }
+    
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+    
+            function isValidPhoneNumber(phone) {
+                var phoneRegex = /^\d{10}$/;
+                return phoneRegex.test(phone);
             }
-
-            if (lastName.trim() === "") {
-                lastNameError.textContent = "Please enter Last Name";
-                isValid = false;
-            }
-
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email.trim() !== "" && !emailRegex.test(email)) {
-                emailError.textContent = "Please enter a valid email address";
-                isValid = false;
-            } else if (email.trim() === "") {
-                emailError.textContent = "Please enter an email address";
-                isValid = false;
-            }
-
-            var phoneRegex = /^\d{10}$/;
-            if (phone.trim() !== "" && !phoneRegex.test(phone)) {
-                phoneError.textContent = "Please enter a valid 10-digit phone number";
-                isValid = false;
-            } else if (phone.trim() === "") {
-                phoneError.textContent = "Please enter a phone number";
-                isValid = false;
-            }
-
-            return isValid;
-        }
+        });
     </script>
 
 </body>
