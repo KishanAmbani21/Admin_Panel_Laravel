@@ -95,7 +95,7 @@
                   <p class="text-center small">Enter your email & password to login</p>
                 </div>
 
-                <form class="row g-3 needs-validation" action="{{ route('login') }}" method="POST"
+                <form class="row g-3 needs-validation" action="{{ route('login.post') }}" method="POST"
                   enctype="multipart/form-data" id="myForm">
 
                   @csrf

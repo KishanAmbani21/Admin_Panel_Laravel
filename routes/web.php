@@ -20,16 +20,16 @@ use App\Models\Company;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
-});
+})->name('login')->middleware('guest');
 
-Route::post('/login', [loginController::class, 'login'])->name('login');
+Route::post('/login', [loginController::class, 'login'])->name('login.post');
 
 // Middleware group for routes that require session data
-Route::middleware('sessionafter')->group(function () {
+Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [loginController::class, 'loginform'])->name('dashboard');
+    Route::get('/', [loginController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
@@ -40,3 +40,4 @@ Route::middleware('sessionafter')->group(function () {
     Route::patch('/restore/{id}', [CompanyController::class, 'restore'])->name('restore');
     Route::delete('/delete/{id}', [CompanyController::class, 'delete'])->name('delete');
 });
+

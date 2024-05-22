@@ -14,7 +14,7 @@ class LoginController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function loginForm()
+    public function dashboard()
     {
         return view('dashboard');
     }
@@ -28,26 +28,31 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email', 'string'],
-            'password' => ['required', 'string'],
+            'email' => 'required|email|string',
+            'password' => 'required|string',
         ]);
-
-        $user = User::where('email', $request->email)->first();
-
-        if ($user) {
-            if ($user && Hash::check($request->password, $user->password)) {
-                $request->session()->put('loginId', $user->id);
-                return redirect()->route('dashboard');
-            } else {
-                return back()->withErrors([
-                    'password' => 'The provided password is incorrect.',
-                ])->withInput();
-            }
-        } else {
+    
+        $credentials = $request->only('email', 'password');
+    
+        $user = User::where('email', $credentials['email'])->first();
+    
+        if (!$user) {
             return back()->withErrors([
-                'email' => 'The provided email is not registered.',
+                'email' => 'Email is not registered',
             ])->withInput();
         }
+    
+        if (!Hash::check($credentials['password'], $user->password)) {
+            return back()->withErrors([
+                'password' => 'Password is incorrect',
+            ])->withInput();
+        }
+    
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('dashboard');
+        }
+    
     }
 
     /**
@@ -58,7 +63,10 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $request->session()->forget('loginId');
-        return redirect('/')->with('success', 'Logged out successfully');
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login')->with('success', 'Logged out successfully');
     }
 }

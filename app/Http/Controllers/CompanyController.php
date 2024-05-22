@@ -30,7 +30,7 @@ class CompanyController extends Controller
             $query->where('name', 'like', '%' . $search . '%');
         }
 
-        $companies = $query->paginate(3);
+        $companies = $query->paginate(10);
 
         return view('Company_dashboard', compact('companies', 'search'));
     }

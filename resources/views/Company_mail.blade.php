@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
     <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
-    <title>Welcome - [Plain HTML]</title>
+    <title>Welcome Mail</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500" rel="stylesheet">
     <style>
         html,
@@ -153,8 +153,9 @@
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                             <tr>
                                 <td style="padding: 30px 40px 30px 40px; text-align: center;"> <span
-                                        style="color:#fff; font-size: 30px" class="d-none d-lg-block"> <img
-                                            src="{{ $maildata['body'] }}" width="20px">Kishan Ambani</span>
+                                        style="color:#fff; font-size: 30px" class="d-none d-lg-block">
+                                         {{-- <img src="{{ $maildata['body'] }}" width="20px"> --}}
+                                         Kishan Ambani</span>
                                 </td>
                             </tr>
                         </table>
@@ -204,8 +205,10 @@
                     <td bgcolor="#333333">
                         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"> <br>
                             <tr>
-                                <td align="center"><img src="{{ $maildata['body'] }}" width="37" height="37"
-                                        style="display: block; border: 0px; padding-bottom: 10px;"></td>
+                                <td align="center">
+                                    {{-- <img src="{{ $maildata['body'] }}" width="37" height="37"
+                                        style="display: block; border: 0px; padding-bottom: 10px;"> --}}
+                                    </td>
                             </tr>
 
                             <tr>

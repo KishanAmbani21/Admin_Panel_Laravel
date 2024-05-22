@@ -95,7 +95,7 @@
                 emailError.textContent = "Company Email is required";
                 isValid = false;
             } else {
-                var emailRegex = /^[a-z]+[a-z0-9]+@(gmail|mail|outlook|hotmail)\.(com|in|org)$/;
+                var emailRegex = /^[a-z]+[a-z0-9]+@[a-z]+\.(com|in|org|net)$/;
                 if (!emailRegex.test(email)) {
                     emailError.textContent = "Please enter a valid email address";
                     isValid = false;

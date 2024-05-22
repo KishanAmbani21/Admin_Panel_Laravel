@@ -3,10 +3,10 @@
 @section('main')
 
 <div class="pagetitle">
-  <h1>Profile</h1>
+  <h1>Company Profile</h1>
   <nav>
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{ url('/') }}">Dashboard</a></li>
       <li class="breadcrumb-item"><a href="{{ route('company.index') }}">Company</a></li>
       <li class="breadcrumb-item active">Show</li>
     </ol>
@@ -93,7 +93,7 @@
               <th scope="col">Phone</th>
               <th>Action1</th>
               <th>Action2</th>
-              <th>Action3</th>
+              {{-- <th>Action3</th> --}}
             </tr>
           </thead>
 
@@ -109,9 +109,9 @@
               <td>
                 <a class="btn btn-warning" href="{{ route('employee.show', $employee->id) }}">Show</a>
               </td>
-              <td>
+              {{-- <td>
                 <a class="btn btn-success" href="{{ route('employee.edit', $employee->id) }}">Edit</a>
-              </td>
+              </td> --}}
               <td>
                 <form action="{{ route('employee.destroy', $employee->id) }}" method="post" id='deleteform'>
                   @csrf

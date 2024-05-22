@@ -21,6 +21,6 @@ class LoginMiddleware
         }
 
         // If 'loginId' key doesn't exist in the session, redirect to the login page
-        return redirect('/');
+        return redirect('/login');
     }
 }
