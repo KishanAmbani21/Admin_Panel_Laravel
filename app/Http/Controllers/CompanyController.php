@@ -57,7 +57,7 @@ class CompanyController extends Controller
             $request->validate([
                 'name' => ['required', 'string'],
                 'email' => ['required', 'email'],
-                'logo' => ['required', 'mimes:jpeg,png,jpg', 'dimensions:min_width=100,min_height=100'],
+                // 'logo' => ['required', 'mimes:jpeg,png,jpg', 'dimensions:min_width=100,min_height=100'],
                 'link' => ['url'],
             ]);
 
