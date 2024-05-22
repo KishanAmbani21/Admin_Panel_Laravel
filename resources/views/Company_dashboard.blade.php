@@ -206,7 +206,24 @@
 
 
                             <div class="table-responsive">
-
+                                @if($companies->isEmpty())
+                                <table class="table table-hover" id="companys">
+                                    <th>
+                                        <tr>
+                                            <th scope="col">id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Logo</th>
+                                            <th scope="col">Website Link</th>
+                                            <th scope="col">Status</th>
+        
+                                            <th>Action1</th>
+                                            <th>Action2</th>
+                                        </tr>
+                                    </th>
+                                </table>
+                                    <p style="text-align:center;">companies Not available in trace data.</p>
+                                @else
                                 <table class="table table-hover" id="companys">
                                     <thead>
                                         <tr>
@@ -264,6 +281,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                @endif
                             </div>
                             <div class="d-flex justify-content-center">
                                 {!! $companies->links() !!}

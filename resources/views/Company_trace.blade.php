@@ -12,6 +12,24 @@
                     <h5 class="card-title" style="text-align:center;">Company Trace_Data Table</h5>
 
                     <div class="table-responsive">
+                        @if($company->isEmpty())
+                        <table class="table table-hover" id="companys">
+                            <th>
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Logo</th>
+                                    <th scope="col">Website Link</th>
+                                    <th scope="col">Status</th>
+
+                                    <th>Action1</th>
+                                    <th>Action2</th>
+                                </tr>
+                            </th>
+                        </table>
+                            <p style="text-align:center;">companies Not available in trace data.</p>
+                        @else
                         <table class="table table-hover" id="companys">
                             <thead>
                                 <tr>
@@ -45,22 +63,22 @@
                                     </td>
                                     <td>
                                         <form action="{{ route('restore', $company->id) }}" method="post"
-                                            id="Restoreform">
+                                            id="Restoreform-{{ $company->id }}">
                                             @csrf
                                             @method('patch')
                                             <button type="button"
-                                                onclick="if(confirm('Are you sure you want to Restore? ')){event.preventDefault();document.getElementById('Restoreform').submit()}"
-                                                class="btn btn-primary" class="btn btn-primary">Restore</button>
+                                                onclick="if(confirm('Are you sure you want to Restore? ')){event.preventDefault();document.getElementById('Restoreform-{{ $company->id }}').submit()}"
+                                                class="btn btn-primary">Restore</button>
                                         </form>
                                     </td>
 
                                     <td>
                                         <form action="{{ route('delete', $company->id) }}" method="post"
-                                            id="deleteform">
+                                            id="deleteform-{{ $company->id }}">
                                             @csrf
                                             @method('delete')
                                             <button type="button"
-                                                onclick="if(confirm('Are you sure you want to delete? ')){event.preventDefault();document.getElementById('deleteform').submit()}"
+                                                onclick="if(confirm('Are you sure you want to delete? ')){event.preventDefault();document.getElementById('deleteform-{{ $company->id }}').submit()}"
                                                 class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
@@ -69,6 +87,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -192,7 +192,6 @@ class CompanyController extends Controller
 
             return redirect()->back()->with('success', 'Company restored successfully.');
         } else {
-
             return redirect()->back()->with('error', 'Company not found.');
         }
     }

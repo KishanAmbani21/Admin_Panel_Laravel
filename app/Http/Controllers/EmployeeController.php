@@ -10,7 +10,8 @@ use App\Models\Employee;
 use App\Models\Company;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
-use Yajra\DataTables\DataTables;
+// use Yajra\DataTables\DataTables;
+use Yajra\DataTables\Facades\DataTables;
 
 class EmployeeController extends Controller
 {
@@ -23,9 +24,9 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $employee = Employee::all();
-
-            return DataTables::of($employee)
+            $query = Employee::query();
+    
+            return DataTables::eloquent($query)
                 ->addColumn('action1', function ($employee) {
                     return '<button type="button" class="btn btn-warning" onclick="window.location.href=\'' . route('employee.show', $employee->id) . '\'">Show</button>';
                 })
@@ -106,8 +107,9 @@ class EmployeeController extends Controller
     public function show(string $id)
     {
         $employee = Employee::findOrFail($id);
+        $company = Company::findOrFail($id);
 
-        return view('Employee_show', compact('employee'));
+        return view('Employee_show', compact('employee', 'company'));
     }
 
     /**
