@@ -114,14 +114,11 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            {{-- <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Logout</span>
-                            </a> --}}
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button class="dropdown-item d-flex align-items-center" type="submit">Logout</button>
-                            </form>
+                            </a>
+                            
                         </li>
                     </ul>
                 </li>
@@ -222,7 +219,7 @@
                                         </tr>
                                     </th>
                                 </table>
-                                    <p style="text-align:center;">companies Not available in trace data.</p>
+                                    <p style="text-align:center;">companies Not available.</p>
                                 @else
                                 <table class="table table-hover" id="companys">
                                     <thead>

@@ -117,7 +117,7 @@
                 }
     
                 if (!logo) {
-                logoError.textContent = "Please upload a logo";
+                logoError.textContent = "Company logo is required";
                 isValid = false;
             } else {
                 var validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
@@ -141,7 +141,7 @@
             }
     
                 if (website.trim() === "") {
-                    websiteError.textContent = "Please enter Website";
+                    websiteError.textContent = "Company Website is required";
                     isValid = false;
                 } else {
                     var urlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}?(\/.*)?$/;

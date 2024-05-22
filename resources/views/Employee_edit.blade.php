@@ -110,7 +110,7 @@
                 }
     
                 if (email === "") {
-                    emailError.textContent = "Company Email is required";
+                    emailError.textContent = "Employee Email is required";
                     isValid = false;
                 } else {
                     var emailRegex = /^[a-z]+[a-z0-9]+@[a-z]+\.(com|in|org|net)$/;

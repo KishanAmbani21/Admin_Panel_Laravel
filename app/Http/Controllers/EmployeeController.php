@@ -10,7 +10,6 @@ use App\Models\Employee;
 use App\Models\Company;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
-// use Yajra\DataTables\DataTables;
 use Yajra\DataTables\Facades\DataTables;
 
 class EmployeeController extends Controller
