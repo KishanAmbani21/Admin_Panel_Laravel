@@ -12,13 +12,18 @@ use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
+/**
+ * Class EmployeeController
+ *
+ * Controller for managing Employees crud operations.
+ */
 class EmployeeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Employees with yajra datatables.
      *
      * @param Request $request
-     * @return \Illuminate\View\View
+     * @return Employee_dashboard after the ajax call.
      */
     public function index(Request $request)
     {
@@ -43,10 +48,10 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form of creating a new Employee.
      *
      * @param Request $request
-     * @return \Illuminate\View\View
+     * @return Employee_add Blade file.
      */
     public function create(Request $request)
     {
@@ -60,10 +65,10 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Employees.
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Redirect response after Employees data store.
      */
     public function store(Request $request)
     {
@@ -83,7 +88,6 @@ class EmployeeController extends Controller
             $employee->company_id = $request['company'];
 
             $employee->save();
-
             return redirect()->route('employee.index')->with('success', 'Employee added successfully');
         } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];
@@ -98,24 +102,22 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Employee.
      *
      * @param string $id
-     * @return \Illuminate\View\View
+     * @return Employee_show after the compact.
      */
     public function show(string $id)
     {
         $employee = Employee::findOrFail($id);
-        $company = Company::findOrFail($id);
-
-        return view('Employee_show', compact('employee', 'company'));
+        return view('Employee_show', compact('employee'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Employees.
      *
      * @param string $id
-     * @return \Illuminate\View\View
+     * @return Employee_edit after the compact
      */
     public function edit(string $id)
     {
@@ -124,11 +126,11 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Employees.
      *
      * @param Request $request
      * @param string $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Redirect response after Employees data update.
      */
     public function update(EmployeeRequest $request, string $id)
     {
@@ -153,10 +155,10 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * delete the specified Employee.
      *
      * @param string $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Redirect response after delete.
      */
     public function destroy($id)
     {

@@ -18,72 +18,18 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- CSS cdn-->
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Popup CSS File -->
+    <link href="assets/css/popup.css" rel="stylesheet">
 
-    <style>
-        #companys {
-            border-collapse: collapse;
-        }
-
-        #companys td,
-        #companys th {
-            border: 1px solid #859cbe;
-            padding: 8px;
-            text-align: center;
-        }
-
-        #companys th {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            text-align: left;
-            background-color: #4154F1;
-            color: white;
-            text-align: center;
-        }
-
-        .msgpopup {
-            position: fixed;
-            top: 0;
-            left: 50%;
-            transform: translateX(-30%);
-            z-index: 9999;
-            width: 20%;
-            max-width: 400px;
-            animation: slideInOut2 0.6s forwards, disappear 5s forwards;
-        }
-
-        @keyframes slideInOut2 {
-            0% {
-                top: -100%;
-            }
-
-            100% {
-                top: 10%;
-            }
-        }
-
-        @keyframes disappear {
-            0% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-                display: none;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -102,8 +48,7 @@
         <nav class="header-nav ms-auto" aria-label="breadcrumb">
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url('/dashboard') }}"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url('/dashboard') }}" data-bs-toggle="dropdown">
                         <img src="assets/img/Kishan.jpg" alt="Profile">
                         <span class="d-none d-md-block dropdown-toggle ps-2">Kishan Ambani</span>
                     </a>
@@ -132,9 +77,6 @@
     </header>
 
     @if(Session::has('success'))
-    {{-- <span class="msgpopup">
-        <p>{{ session('success') }}</p>
-    </span> --}}
     <div class="msgpopup">
         <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show text-center">
             {{ Session('success') }}
@@ -143,9 +85,6 @@
     @endif
 
     @if(Session::has('delete'))
-    {{-- <span class="msgpopup">
-        <p>{{ session('success') }}</p>
-    </span> --}}
     <div class="msgpopup">
         <div class="alert alert-success bg-danger text-light border-0 alert-dismissible fade show text-center">
             {{ Session('delete') }}
@@ -195,8 +134,7 @@
                 <div class="col-lg-15">
                     <div class="card">
                         <div class="card-body">
-                            <div style="margin-top: 30px; margin-left: 4px;"><a class="btn btn-primary"
-                                    href="{{ route('employee.create') }}">Add Employee</a></div>
+                            <div style="margin-top: 30px; margin-left: 4px;"><a class="btn btn-primary" href="{{ route('employee.create') }}">Add Employee</a></div>
 
                             <h5 class="card-title" style="text-align:center;">Employee Data Table</h5>
 
@@ -242,10 +180,7 @@
         </div>
     </footer>
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="assets/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
@@ -255,40 +190,45 @@
 
     <script>
         $(function () {
-
-        var table = $('.employee-table').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: "{{ route('employee.index') }}",
-            columns: [{
-                data:'id',name:'id'
-            },
-            {
-                data:'first_name',name:'first_name'
-            },
-            {
-                data:'last_name',name:'last_name'
-            },
-            {
-                data:'email',name:'email'
-            },
-            {
-                data:'phone',name:'phone'
-            },
-            {
-                data:'action1',name:'action1'
-            },
-            {
-                data:'action2',name:'action2'
-            },
-            {
-                data:'action3',name:'action3'
-            }
-            
-            ]
+            var table = $('.employee-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('employee.index') }}",
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'first_name',
+                        name: 'first_name'
+                    },
+                    {
+                        data: 'last_name',
+                        name: 'last_name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'phone',
+                        name: 'phone'
+                    },
+                    {
+                        data: 'action1',
+                        name: 'action1'
+                    },
+                    {
+                        data: 'action2',
+                        name: 'action2'
+                    },
+                    {
+                        data: 'action3',
+                        name: 'action3'
+                    }
+                ]
+            });
         });
-
-    });
     </script>
 
 </body>

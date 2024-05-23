@@ -7,12 +7,17 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+/**
+ * Class LoginController
+ *
+ * Controller for managing user authentication.
+ */
 class LoginController extends Controller
 {
     /**
-     * Show the login form.
+     * Show the dashboard.
      *
-     * @return \Illuminate\View\View
+     * @return dashboard blade file
      */
     public function dashboard()
     {
@@ -20,10 +25,10 @@ class LoginController extends Controller
     }
 
     /**
-     * Handle user login.
+     * login Validation.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  $request The HTTP request instance
+     * @return Redirect response after login attempt
      */
     public function login(Request $request)
     {
@@ -56,10 +61,10 @@ class LoginController extends Controller
     }
 
     /**
-     * Log the user out.
+     * Logout Validation.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  $request The HTTP request instance
+     * @return Redirect response after logout
      */
     public function logout(Request $request)
     {

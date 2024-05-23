@@ -12,13 +12,18 @@ use App\Models\Company;
 use App\Models\Employee;
 use App\Http\Requests\CompanyRequest;
 
+/**
+ * Class CompanyController
+ *
+ * Controller for managing company crud operations.
+ */
 class CompanyController extends Controller
 {
     /**
      * Display a listing of the companies with pagination.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
+     * @param  $request
+     * @return company_dashboard after the compact.
      */
     public function index(Request $request)
     {
@@ -36,9 +41,9 @@ class CompanyController extends Controller
     }
 
     /**
-     * Show the form for creating a new company.
+     * Show the form of creating a new company.
      *
-     * @return \Illuminate\View\View
+     * @return Compnay_add Blade file.
      */
     public function create()
     {
@@ -46,19 +51,19 @@ class CompanyController extends Controller
     }
 
     /**
-     * Store a newly created company in storage.
+     * Store a newly created company.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  $request
+     * @return Redirect response after Company data store.
      */
-    public function store(CompanyRequest $request)
+    public function store(Request $request)
     {
         try {
             $request->validate([
                 'name' => ['required', 'string'],
                 'email' => ['required', 'email'],
                 // 'logo' => ['required', 'mimes:jpeg,png,jpg', 'dimensions:min_width=100,min_height=100'],
-                'link' => ['url'],
+                // 'link' => ['url'],
             ]);
 
             $company = new Company();
@@ -74,14 +79,14 @@ class CompanyController extends Controller
                 $company->logo = $imageUrl;
             }
 
-            $company->save();
-
+            
             $mailData = [
                 'title' => $request->name,
                 'body' => $company->logo,
             ];
             Mail::to($request->email)->send(new CompanyMail($mailData));
-
+            $company->save();
+            
             return redirect()->route('company.index')->with('success', 'Company added successfully');
         } catch (QueryException $e) {
 
@@ -100,7 +105,7 @@ class CompanyController extends Controller
      * Display the specified company.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return company_show after the compact.
      */
     public function show($id)
     {
@@ -115,7 +120,7 @@ class CompanyController extends Controller
      * Show the form for editing the specified company.
      *
      * @param  int  $id
-     * @return \Illuminate\View\View
+     * @return company_edit after the compact.
      */
     public function edit($id)
     {
@@ -125,11 +130,11 @@ class CompanyController extends Controller
     }
 
     /**
-     * Update the specified company in storage.
+     * Update the specified company data.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CompanyRequest $request
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Redirect response after Company data update.
      */
     public function update(CompanyRequest $request, $id)
     {
@@ -162,23 +167,28 @@ class CompanyController extends Controller
     }
 
     /**
-     * Remove the specified company from storage.
+     * Softdelete the specified company.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Redirect response after softdelete.
      */
     public function destroy($id)
     {
-        Company::destroy($id);
-
+        $company = Company::find($id);
+    
+        if ($company) {
+            $company->delete();
+        }
+    
         return redirect()->back()->with('delete', 'Company traced successfully');
     }
+    
 
     /**
      * Restore the specified soft deleted company.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Redirect response after Restore.
      */
     public function restore($id)
     {
@@ -200,7 +210,7 @@ class CompanyController extends Controller
      * Permanently delete the specified company.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return Redirect response after forceDelete.
      */
     public function delete($id)
     {
@@ -220,7 +230,7 @@ class CompanyController extends Controller
     /**
      * Display a listing of the trashed companies.
      *
-     * @return \Illuminate\View\View
+     * @return company_trace after the compact.
      */
     public function traceData()
     {

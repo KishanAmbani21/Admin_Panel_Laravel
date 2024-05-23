@@ -15,18 +15,13 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
@@ -37,26 +32,21 @@
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
-
         <div class="d-flex align-items-center justify-content-between">
             <i class="bi bi-list toggle-sidebar-btn" style="margin-right: 30px;"></i>
             <a href="{{ url('/') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('assets/img/logo.png') }}" alt="">
+                <img src="{{ asset('assets/img/logo.png') }}" alt="Kishan">
                 <span class="d-none d-lg-block">Kishan Ambani</span>
             </a>
         </div>
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-
                 <li class="nav-item dropdown pe-3">
-
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url('/') }}"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{{ url('/') }}" data-bs-toggle="dropdown">
                         <img src="{{ asset('assets/img/Kishan.jpg') }}" alt="Profile">
                         <span class="d-none d-md-block dropdown-toggle ps-2">Kishan Ambani</span>
                     </a>
-
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>Kishan Ambani</h6>
@@ -75,7 +65,7 @@
                 </li>
             </ul>
         </nav>
-    </header>
+    </header><!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
@@ -86,34 +76,28 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('company.index') }}">
-                    <i class="ri-building-4-fill"></i><span>Company</span>
+                    <i class="ri-building-4-fill"></i>
+                    <span>Company</span>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('employee.index') }}">
-                    <i class="bi bi-person-square"></i><span>Employee</span>
+                    <i class="bi bi-person-square"></i>
+                    <span>Employee</span>
                 </a>
             </li>
         </ul>
+    </aside><!-- End Sidebar -->
 
-    </aside>
-
+    <!-- ======= Main ======= -->
     <main id="main" class="main">
-
         @yield('main')
+    </main><!-- End Main -->
 
-    </main>
-    
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
+    <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>

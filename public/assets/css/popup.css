@@ -1,0 +1,51 @@
+#companys {
+    border-collapse: collapse;
+}
+
+#companys td,
+#companys th {
+    border: 1px solid #859cbe;
+    padding: 8px;
+    text-align: center;
+}
+
+#companys th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    background-color: #4154F1;
+    color: white;
+    text-align: center;
+}
+
+.msgpopup {
+    position: fixed;
+    top: 0;
+    left: 45%;
+    transform: translateX(-30%);
+    z-index: 9999;
+    width: 50%;
+    max-width: 400px;
+    animation: slideInOut2 0.6s forwards, disappear 5s forwards;
+  }
+
+  @keyframes slideInOut2 {
+    0% {
+      top: -100%;
+    }
+
+    100% {
+      top: 10%;
+    }
+  }
+
+  @keyframes disappear {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
