@@ -181,7 +181,7 @@
                                         <tr>
                                             <td>{{ $company->id }}</td>
                                             <td>{{ $company->name }}</td>
-                                            <td><img class="card-img-top" src="{{ $company->logo }}" style="width:100px; height:100px;" alt="Logo"></td>
+                                            <td><img class="card-img-top" src="{{ asset('storage/logo/' . $company->logo) }}" style="width:100px; height:100px;" alt="Logo"></td>
                                             <td>{{ $company->email }}</td>
                                             <td><a href="{{ $company->link }}" target="_blank">{{ $company->link }}</a></td>
                                             <td>

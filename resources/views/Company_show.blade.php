@@ -20,7 +20,7 @@
     <div class="col-xl-4">
       <div class="card">
         <div class="card-body profile-card p-5 d-flex flex-column align-items-center">
-          <img src="{{ $company->logo }}" alt="Profile" width="150px" height="150px">
+          <img src="{{ asset('storage/logo/' . $company->logo) }}" alt="Profile" width="150px" height="150px">
           <h2>{{ $company->name }}</h2>
         </div>
       </div>

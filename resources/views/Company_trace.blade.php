@@ -48,7 +48,7 @@
                                     <td>{{ $comp->name }}</td>
                                     <td>{{ $comp->email }}</td>
                                     <td>
-                                        <img class="card-img-top" src="{{ $comp->logo }}" style="width:100px; height:100px;" alt="Company Logo">
+                                        <img class="card-img-top" src="{{ asset('storage/logo/' . $comp->logo) }}" style="width:100px; height:100px;" alt="Company Logo">
                                     </td>
                                     <td>{{ $comp->link }}</td>
                                     <td>

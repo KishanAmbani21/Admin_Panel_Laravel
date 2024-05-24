@@ -29,7 +29,7 @@ class EmployeeController extends Controller
     {
         if ($request->ajax()) {
             $query = Employee::query();
-    
+
             return DataTables::eloquent($query)
                 ->addColumn('action1', function ($employee) {
                     return '<button type="button" class="btn btn-warning" onclick="window.location.href=\'' . route('employee.show', $employee->id) . '\'">Show</button>';
@@ -88,7 +88,9 @@ class EmployeeController extends Controller
             $employee->company_id = $request['company'];
 
             $employee->save();
-            return redirect()->route('employee.index')->with('success', 'Employee added successfully');
+            
+            return redirect()->route('company.show', $request['company'])->with('success', 'Employee added successfully');
+            
         } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];
             if ($errorCode == 1062) {

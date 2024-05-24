@@ -73,20 +73,18 @@ class CompanyController extends Controller
 
             if ($request->hasFile('logo')) {
                 $image = $request->file('logo');
-                $filename = Str::random(20) . '.' . $image->getClientOriginalExtension();
-                $imagePath = $request->file('logo')->storeAs('public', $filename);
-                $imageUrl = Storage::url($imagePath);
-                $company->logo = $imageUrl;
+                $filename =  $request->name . '_' . time() . '.' . $image->getClientOriginalExtension();
+                $request->file('logo')->storeAs('public/logo', $filename);
+                $company->logo = $filename;
             }
 
-            
             $mailData = [
                 'title' => $request->name,
                 'body' => $company->logo,
             ];
             Mail::to($request->email)->send(new CompanyMail($mailData));
             $company->save();
-            
+
             return redirect()->route('company.index')->with('success', 'Company added successfully');
         } catch (QueryException $e) {
 
@@ -144,10 +142,9 @@ class CompanyController extends Controller
 
             if ($request->hasFile('logo')) {
                 $image = $request->file('logo');
-                $filename = Str::random(20) . '.' . $image->getClientOriginalExtension();
-                $imagePath = $request->file('logo')->storeAs('public', $filename);
-                $imageUrl = Storage::url($imagePath);
-                $company->logo = $imageUrl;
+                $filename =  $request->name . '_' . time() . '.' . $image->getClientOriginalExtension();
+                $request->file('logo')->storeAs('public/logo', $filename);
+                $company->logo = $filename;
             }
 
             $company->update($validate);
@@ -175,14 +172,14 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $company = Company::find($id);
-    
+
         if ($company) {
             $company->delete();
         }
-    
+
         return redirect()->back()->with('delete', 'Company traced successfully');
     }
-    
+
 
     /**
      * Restore the specified soft deleted company.
