@@ -27,17 +27,9 @@ class CompanyController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $companies = Company::all();
 
-        $query = Company::query();
-
-        if ($search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        }
-
-        $companies = $query->paginate(10);
-
-        return view('Company_dashboard', compact('companies', 'search'));
+        return view('Company_dashboard', compact('companies'));
     }
 
     /**
@@ -108,10 +100,9 @@ class CompanyController extends Controller
     public function show($id)
     {
         $company = Company::findOrFail($id);
+        $employees = Employee::where('company_id', $id)->paginate(10);
 
-        $employee = Employee::where('company_id', $id)->get();
-
-        return view('Company_show', compact('company', 'employee'))->with('delete', 'Employee deleted successfully');
+        return view('Company_show', compact('company', 'employees'))->with('delete', 'Employee deleted successfully');
     }
 
     /**
@@ -231,8 +222,23 @@ class CompanyController extends Controller
      */
     public function traceData()
     {
-        $company = Company::onlyTrashed()->get();
+        $company = Company::onlyTrashed()->paginate(2);
 
         return view('Company_trace', compact('company'));
+    }
+
+    /**
+     * Serach companies.
+     *
+     * @return Searchable companies.
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $companies = Company::where('name', 'LIKE', "%{$query}%")
+            ->orWhere('email', 'LIKE', "%{$query}%")
+            ->paginate(10);
+
+        return response()->json($companies);
     }
 }

@@ -39,5 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/trace_data', [CompanyController::class, 'traceData'])->name('trace_data');
     Route::patch('/restore/{id}', [CompanyController::class, 'restore'])->name('restore');
     Route::delete('/delete/{id}', [CompanyController::class, 'delete'])->name('delete');
+    
+    Route::get('/search-companies', [CompanyController::class, 'search'])->name('companies.search');
 });
 

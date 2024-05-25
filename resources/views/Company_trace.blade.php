@@ -92,6 +92,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        <!-- Pagination Controls -->
+            <div class="d-flex justify-content-center">
+                {!! $company->links() !!}
+              </div>
                         @endif
                     </div>
                 </div>

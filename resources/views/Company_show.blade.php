@@ -1,14 +1,6 @@
 @extends('Layout')
 
 @section('main')
-
-@if(Session::has('delete'))
-<div class="msgpopup">
-  <div class="alert alert-success bg-danger text-light border-0 alert-dismissible fade show text-center">
-    {{ Session('delete') }}
-  </div>
-</div>
-@endif
 <!-- Title -->
 <div class="pagetitle">
   <h1>Company Profile</h1>
@@ -74,68 +66,62 @@
     </div>
 
     <!-- Employee List -->
-    @if ($employee)
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title text-center">Employee List</h5>
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center">Employee List</h5>
 
-        @if($employee->isEmpty())
-        <table class="table table-hover" id="companys">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Logo</th>
-              <th scope="col">Website Link</th>
-              <th scope="col">Status</th>
-              <th>Action1</th>
-              <th>Action2</th>
-            </tr>
-          </thead>
-        </table>
-        <p class="text-center">Employees Not available.</p>
-        @else
-        <!-- Employee Table -->
-        <table class="table table-hover" id="companys">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Company</th>
-              <th scope="col">Email</th>
-              <th scope="col">Phone</th>
-              <th>Action1</th>
-              <th>Action2</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($employee as $emp)
-            <tr>
-              <td>{{ $emp->id }}</td>
-              <td>{{ $emp->first_name }}</td>
-              <td>{{ $emp->last_name }}</td>
-              <td>{{ $emp->company->name ?? '' }}</td>
-              <td>{{ $emp->email }}</td>
-              <td>{{ $emp->phone }}</td>
-              <td><a class="btn btn-warning" href="{{ route('employee.show', $emp->id) }}">Show</a></td>
-              <td>
-                <form action="{{ route('employee.destroy', $emp->id) }}" method="post" id="deleteform{{ $emp->id }}">
-                  @csrf
-                  @method('delete')
-                  <button type="button" class="btn btn-danger"
-                    onclick="if(confirm('Are you sure you want to delete?')){event.preventDefault();document.getElementById('deleteform{{ $emp->id }}').submit()}">Delete</button>
-                </form>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-        @endif
+          @if(session('delete'))
+            <div class="alert alert-success">{{ session('delete') }}</div>
+          @endif
+
+          @if($employees->isEmpty())
+            <p class="text-center">Employees Not available.</p>
+          @else
+            <!-- Employee Table -->
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Company</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th>Action1</th>
+                  <th>Action2</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($employees as $employee)
+                  <tr>
+                    <td>{{ $employee->id }}</td>
+                    <td>{{ $employee->first_name }}</td>
+                    <td>{{ $employee->last_name }}</td>
+                    <td>{{ $employee->company->name ?? '' }}</td>
+                    <td>{{ $employee->email }}</td>
+                    <td>{{ $employee->phone }}</td>
+                    <td><a class="btn btn-warning" href="{{ route('employee.show', $employee->id) }}">Show</a></td>
+                    <td>
+                      <form action="{{ route('employee.destroy', $employee->id) }}" method="post" id="deleteform{{ $employee->id }}">
+                        @csrf
+                        @method('delete')
+                        <button type="button" class="btn btn-danger" onclick="if(confirm('Are you sure you want to delete?')){event.preventDefault();document.getElementById('deleteform{{ $employee->id }}').submit()}">Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+
+            <!-- Pagination Controls -->
+            <div class="d-flex justify-content-center">
+              {!! $employees->links() !!}
+            </div>
+          @endif
+        </div>
       </div>
     </div>
-    @endif
   </div>
 </section>
 @endsection
