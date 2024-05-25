@@ -111,7 +111,7 @@ class CompanyController extends Controller
 
         $employee = Employee::where('company_id', $id)->get();
 
-        return view('Company_show', compact('company', 'employee'));
+        return view('Company_show', compact('company', 'employee'))->with('delete', 'Employee deleted successfully');
     }
 
     /**

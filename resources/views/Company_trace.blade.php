@@ -2,6 +2,22 @@
 
 @section('main')
 
+@if(Session::has('success'))
+<div class="msgpopup">
+  <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show text-center">
+    {{ Session('success') }}
+  </div>
+</div>
+@endif
+
+@if(Session::has('delete'))
+<div class="msgpopup">
+  <div class="alert alert-success bg-danger text-light border-0 alert-dismissible fade show text-center">
+    {{ Session('delete') }}
+  </div>
+</div>
+@endif
+
 <section class="section">
     <div class="row">
         <div class="col-lg-15">

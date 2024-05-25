@@ -93,8 +93,7 @@
                   <!-- Password Input -->
                   <div class="col-12 mb-4">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" name="password" class="form-control" id="password"
-                      value="{{ old('password') }}">
+                    <input type="password" name="password" class="form-control" id="password" value="{{ old('password') }}">
                     <span id="passwordError" class="error text-danger"></span>
                   </div>
 

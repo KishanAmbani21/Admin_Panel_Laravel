@@ -26,6 +26,9 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('assets/css/popup.css') }}" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -99,6 +102,7 @@
     <!-- Vendor JS Files -->
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    
 
 </body>
 

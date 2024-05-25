@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Employee;
 use App\Models\Company;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -55,6 +56,7 @@ class EmployeeController extends Controller
      */
     public function create(Request $request)
     {
+        Session::put('url',url()->previous());
         if ($request->has('id')) {
             $company = Company::find($request->id);
             return view('Employee_add', compact('company'));
@@ -89,7 +91,7 @@ class EmployeeController extends Controller
 
             $employee->save();
             
-            return redirect()->route('company.show', $request['company'])->with('success', 'Employee added successfully');
+            return redirect(Session::get('url'))->with('success', 'Employee added successfully');
             
         } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];

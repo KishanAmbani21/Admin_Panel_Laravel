@@ -1,6 +1,14 @@
 @extends('Layout')
 
 @section('main')
+
+@if(Session::has('delete'))
+<div class="msgpopup">
+  <div class="alert alert-success bg-danger text-light border-0 alert-dismissible fade show text-center">
+    {{ Session('delete') }}
+  </div>
+</div>
+@endif
 <!-- Title -->
 <div class="pagetitle">
   <h1>Company Profile</h1>
@@ -116,7 +124,8 @@
                 <form action="{{ route('employee.destroy', $emp->id) }}" method="post" id="deleteform{{ $emp->id }}">
                   @csrf
                   @method('delete')
-                  <button type="button" class="btn btn-danger" onclick="if(confirm('Are you sure you want to delete?')){event.preventDefault();document.getElementById('deleteform{{ $emp->id }}').submit()}">Delete</button>
+                  <button type="button" class="btn btn-danger"
+                    onclick="if(confirm('Are you sure you want to delete?')){event.preventDefault();document.getElementById('deleteform{{ $emp->id }}').submit()}">Delete</button>
                 </form>
               </td>
             </tr>
