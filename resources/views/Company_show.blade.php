@@ -79,7 +79,7 @@
             <p class="text-center">Employees Not available.</p>
           @else
             <!-- Employee Table -->
-            <table class="table table-hover">
+            <table class="table table-hover" id="companys">
               <thead>
                 <tr>
                   <th scope="col">Id</th>
